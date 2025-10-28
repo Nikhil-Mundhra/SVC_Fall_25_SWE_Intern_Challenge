@@ -16,8 +16,8 @@
     "build:client": "vite build",
     "build:server": "vite build --config vite.config.server.ts",
     "start": "node dist/server/node-build.mjs",
-    "test": "vitest --run",
-    "test:backend": "vitest --config vitest.config.backend.ts --run",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "vitest --config vitest.config.backend.ts --coverage",
     "test:backend:watch": "vitest --config vitest.config.backend.ts",
     "test:backend:coverage": "vitest --config vitest.config.backend.ts --coverage --run",
     "test:all": "npm run test && npm run test:backend",
@@ -29,7 +29,8 @@
     "test:db:logs": "docker logs fairdatause-test-db",
     "test:unit": "vitest run tests/buffer-parsing.test.ts",
     "format.fix": "prettier --write .",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test:frontend": "vitest --config client/vitest.config.ts --coverage"
   },
   "dependencies": {
     "@supabase/auth-ui-react": "^0.4.7",
@@ -39,7 +40,6 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "pg": "^8.16.3",
     "serverless-http": "^3.2.0",
     "zod": "^3.25.76"
   },
@@ -77,6 +77,10 @@
     "@swc/core": "^1.13.3",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/react-query": "^5.84.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.2.1",
@@ -95,9 +99,12 @@
     "framer-motion": "^12.23.12",
     "globals": "^16.3.0",
     "input-otp": "^1.4.2",
+    "jsdom": "^27.0.1",
     "lucide-react": "^0.539.0",
-    "msw": "^2.10.5",
+    "msw": "^2.11.6",
     "next-themes": "^0.4.6",
+    "nock": "^14.0.10",
+    "pg": "^8.16.3",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
@@ -112,12 +119,16 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
+    "testcontainers": "^11.7.2",
     "three": "^0.176.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",
+    "undici": "^7.16.0",
     "vaul": "^1.1.2",
     "vite": "^7.1.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "whatwg-fetch": "^3.6.20"
   },
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }
