@@ -73,3 +73,7 @@ export function createServer() {
 
   return app;
 }
+
+registerContractorRequest(app);
+
+registerContractorRequest(app);
